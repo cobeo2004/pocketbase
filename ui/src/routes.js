@@ -1,6 +1,7 @@
 import PageIndex from "@/components/PageIndex.svelte";
 import PageLogs from "@/components/logs/PageLogs.svelte";
 import PageRecords from "@/components/records/PageRecords.svelte";
+import PageFunctions from "@/components/functions/PageFunctions.svelte";
 import PageApplication from "@/components/settings/PageApplication.svelte";
 import PageBackups from "@/components/settings/PageBackups.svelte";
 import PageCrons from "@/components/settings/PageCrons.svelte";
@@ -16,9 +17,11 @@ import { wrap } from "svelte-spa-router/wrap";
 const routes = {
     "/pbinstal/:token": wrap({
         asyncComponent: () => import("@/components/base/PageInstaller.svelte"),
-        conditions: [(details) => {
-            return details.params.token && !isTokenExpired(details.params.token)
-        }],
+        conditions: [
+            (details) => {
+                return details.params.token && !isTokenExpired(details.params.token);
+            },
+        ],
         userData: { showAppSidebar: false },
     }),
 
@@ -48,6 +51,12 @@ const routes = {
 
     "/logs": wrap({
         component: PageLogs,
+        conditions: [(_) => ApiClient.authStore.isValid],
+        userData: { showAppSidebar: true },
+    }),
+
+    "/functions": wrap({
+        component: PageFunctions,
         conditions: [(_) => ApiClient.authStore.isValid],
         userData: { showAppSidebar: true },
     }),

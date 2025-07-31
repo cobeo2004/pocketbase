@@ -104,6 +104,16 @@
                     <i class="ri-database-2-line" />
                 </a>
                 <a
+                    href="/functions"
+                    class="menu-item"
+                    aria-label="PostgreSQL Functions"
+                    use:link
+                    use:active={{ path: "/functions/?.*", className: "current-route" }}
+                    use:tooltip={{ text: "PostgreSQL Functions", position: "right" }}
+                >
+                    <i class="ri-function-line" />
+                </a>
+                <a
                     href="/logs"
                     class="menu-item"
                     aria-label="Logs"
